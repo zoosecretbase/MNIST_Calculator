@@ -1,6 +1,8 @@
 scipy
 numpy
+matplotlib
 torch==1.9.1
 torchvision
 tensorboardX
 tqdm
+ipykernel
