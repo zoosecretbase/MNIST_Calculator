@@ -20,5 +20,8 @@
     "svelte": "^3.42.6",
     "tailwindcss": "^2.2.16"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "firebase": "^9.1.3"
+  }
 }

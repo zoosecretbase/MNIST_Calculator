@@ -15,15 +15,14 @@
 		</h1>
 
 		<p class="text-gray-400 font-normal text-base">
-			AI understood arithmetic using
+			This AI understood arithmetic using
 			<a class="hover:underline text-indigo-400" href="https://en.wikipedia.org/wiki/Deep_learning"
 				>Deep Learning</a
-			>
-			, in particular of
-			<a class="hover:underline text-indigo-400" href="https://arxiv.org/abs/1406.2661">GAN</a>
-			. See
-			<a class="hover:underline text-indigo-400" href="https://medium.com/">here</a>
-			to know the more deep aspect and us.
+			>, in particular of
+			<a class="hover:underline text-indigo-400" href="https://arxiv.org/abs/1406.2661">GAN</a>.
+		</p>
+		<p class="text-gray-400 font-normal text-base">
+			See <a class="hover:underline text-indigo-400" href="https://medium.com/">here</a> to know the more deep aspect and us.
 		</p>
 	</div>
 
