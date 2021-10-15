@@ -7,3 +7,6 @@ tensorboardX
 tqdm
 ipykernel
 Pillow
+opencv-contrib-python
+google-api-python-client
+PyDrive
