@@ -1,6 +1,12 @@
 scipy
 numpy
+matplotlib
 torch==1.9.1
 torchvision
 tensorboardX
 tqdm
+ipykernel
+Pillow
+opencv-contrib-python
+google-api-python-client
+PyDrive
