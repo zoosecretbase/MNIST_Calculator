@@ -146,9 +146,10 @@ class Generator(nn.Module):
         return x
 
 class Discriminator(nn.Module):
-    def __init__(self, diff_aug, image_size=32, patch_size=4, input_channel=3, num_classes=1,
-                 dim=384, depth=7, heads=4, mlp_ratio=4,
+    def __init__(self, diff_aug, image_size=32,height_size=28, width_size=168, patch_size=4, input_channel=1, num_classes=1,
+                 dim=2016, depth=7, heads=4, mlp_ratio=4,
                  drop_rate=0.):
+                 #dim = image_size * patch_size * input channnel になっているように見える
         super().__init__()
         if image_size % patch_size != 0:
             raise ValueError('Image size must be divisible by patch size.')

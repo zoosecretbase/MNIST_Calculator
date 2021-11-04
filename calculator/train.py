@@ -23,6 +23,8 @@ from inception_score import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--image_size', type=int, default= 32 , help='Size of image for discriminator input.')
+parser.add_argument('--height_size', type=int, default= 32 , help='Size of image for discriminator height input.')
+parser.add_argument('--width_size', type=int, default= 32 , help='Size of image for discriminator width input.')
 parser.add_argument('--initial_size', type=int, default=8 , help='Initial size for generator.')
 parser.add_argument('--patch_size', type=int, default=4 , help='Patch size for generated image.')
 parser.add_argument('--num_classes', type=int, default=1 , help='Number of classes for discriminator.')
@@ -59,9 +61,14 @@ args = parser.parse_args()
 generator= Generator(depth1=5, depth2=4, depth3=2, initial_size=8, dim=384, heads=4, mlp_ratio=4, drop_rate=0.5)#,device = device)
 generator.to(device)
 
-discriminator = Discriminator(diff_aug = args.diff_aug, image_size=32, patch_size=4, input_channel=3, num_classes=1,
+# discriminator = Discriminator(diff_aug = args.diff_aug, image_size=32, patch_size=4, input_channel=3, num_classes=1,
+#                  dim=384, depth=7, heads=4, mlp_ratio=4,
+#                  drop_rate=0.5)
+
+discriminator = Discriminator(diff_aug = args.diff_aug, height_size=28, width_size=168, patch_size=4, input_channel=1,
                  dim=384, depth=7, heads=4, mlp_ratio=4,
-                 drop_rate=0.)
+                 drop_rate=0.5)
+
 discriminator.to(device)
 
 
@@ -121,7 +128,7 @@ def compute_gradient_penalty(D, real_samples, fake_samples, phi):
 
 
 def train(noise,generator, discriminator, optim_gen, optim_dis,
-        epoch, writer, schedulers, img_size=32, latent_dim = args.latent_dim,
+        epoch, writer, schedulers, height_size=28, width_size=168, latent_dim = args.latent_dim,
         n_critic = args.n_critic,
         gener_batch_size=args.gener_batch_size, device="cuda:0"):
 
@@ -132,7 +139,7 @@ def train(noise,generator, discriminator, optim_gen, optim_dis,
     generator = generator.train()
     discriminator = discriminator.train()
 
-    transform = transforms.Compose([transforms.Resize(size=(img_size, img_size)),transforms.RandomHorizontalFlip(),transforms.ToTensor(),transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+    transform = transforms.Compose([transforms.Resize(size=(height_size, width_size)),transforms.RandomHorizontalFlip(),transforms.ToTensor(),transforms.Normalize((0.5), (0.5))])
 
     train_set = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
     train_loader = torch.utils.data.DataLoader(dataset=train_set, batch_size=30, shuffle=True)
